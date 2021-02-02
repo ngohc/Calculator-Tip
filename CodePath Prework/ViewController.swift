@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         topConstraintHeight.constant = 300;
         UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: .curveEaseOut, animations: { self.view.layoutIfNeeded()}, completion: nil)
     }
- 
+    
     @IBAction func stepperNumPayer(_ sender: UIStepper) {
         numPayerTextField.text = String(sender.value)
     }
