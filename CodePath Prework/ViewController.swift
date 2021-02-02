@@ -13,6 +13,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipAmountLabel: UILabel!
     @IBOutlet weak var tipControl: UISegmentedControl!
     @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var numPayerTextField: UITextField!
+    @IBOutlet weak var totalPerPayer: UILabel!
+    
+
+    @IBOutlet var topConstraintHeight: NSLayoutConstraint!
+    @IBAction func splitButton(_ sender: Any) {
+        topConstraintHeight.constant = 300;
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: .curveEaseOut, animations: { self.view.layoutIfNeeded()}, completion: nil)
+    }
+ 
+    @IBAction func stepperNumPayer(_ sender: UIStepper) {
+        numPayerTextField.text = String(sender.value)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +46,13 @@ class ViewController: UIViewController {
         tipAmountLabel.text = String(format: "$%.2f", tip)
         // Update total amount label
         totalLabel.text = String(format: "$%.2f", total)
+        
+        // Derive number of payees
+        let numPayer = Double(numPayerTextField.text!) ?? 0
+        let eachPayer = total/numPayer
+        
+        // Update total per payee label
+        totalPerPayer.text  = String(format: "$%.2f", eachPayer)
     }
 }
 
